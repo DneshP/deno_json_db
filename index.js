@@ -210,6 +210,15 @@
     }
 
     /**
+     * Removes the DB directory
+     * @param {string} name 
+     */
+    async removeDB(name) {
+        const [response, error] = await this.wrapTryCatch(Deno.remove, name, { recursive: true});
+        return error ? this.getResponse(false, error) : this.getResponse(true, 'DB Removed');
+    }
+
+    /**
      * Fetches the data object from a collection
      * @param {string} name 
      * @param {object} filterParam
@@ -277,7 +286,7 @@
      * not exists creates one for you.
      * @param {string} name 
      * @param {object} updateData 
-     * @returns response object
+     * @returns {object}response object
      */
     async update(name, updateData) {
         const response = this.validateUpdateSignature(updateData);
@@ -285,8 +294,7 @@
             return response;
         }
         if(!response) {
-            this.getResponse(false, `Invalid Update Data Object Signature. Please call updateSignature() 
-            to check the valid object signature`);
+            return this.getResponse(false, 'Invalid Update Data Object Signature. Please call updateSignature() to check the valid object signature');
         }
         const filterParam = updateData['$find'];
         const setData = updateData['$set'];
@@ -326,10 +334,13 @@
      * @param {object} deleteParams 
      * @returns {object} response object
      */
-    async delete(name, deleteParams) {
+    async delete(name, deleteParams = undefined) {
+        if (!deleteParams) {
+            deleteParams = {};
+        }
         const findResponse = await this.find(name, deleteParams, true);
         if(!findResponse.status) {
-            throw new Error(error + 'Occured while performing Delete');
+            throw new Error(findResponse.message + 'Occured while performing Delete');
         }
         const dbResponse = await this.find(name);
         if(!dbResponse.status) {
@@ -346,7 +357,7 @@
         }
         const path = this.collectionPath(name);
         const [update,submitError] = await this.submit(path, this.encoder.encode(JSON.stringify(dbData)));
-        return submitError ? this.getResponse(false, 'Error while updating data' +'\n'+ submitError) : this.getResponse(true, 'Data Updated');
+        return submitError ? this.getResponse(false, 'Error while updating data' +'\n'+ submitError) : this.getResponse(true, 'Removed');
     }
     
     /**
