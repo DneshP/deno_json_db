@@ -10,9 +10,13 @@ you gotta run => deno run -A ./index.js (-A -> grants all permissions)
 So here's the deal 
 
 const db = new Database(path); -> This will be the main DB directory which will hold the collections (.json files)
+
 db.insert('name', {insertData}); -> you can create multiple collections ;)
+
 db.update('name', {$find:{filterParam}, $set:{UpdateData}}); yep
+
 db.find('name', {filterParam});
+
 db.delete('name', {filterParam});
 
 I will provide a link to the documentation once I have it. 
