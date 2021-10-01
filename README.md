@@ -13,7 +13,7 @@ const db = new Database(path); -> This will be the main DB directory which will 
 
 db.insert('name', {insertData}); -> you can create multiple collections ;)
 
-db.update('name', {$find:{filterParam}, $set:{UpdateData}}); yep
+db.update('name', {$find:{filterParam}, $set:{UpdateData}}); yep, ATM -> $find -> runs AND operations only.
 
 db.find('name', {filterParam});
 
