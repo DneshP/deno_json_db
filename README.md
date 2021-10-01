@@ -19,4 +19,4 @@ db.find('name', {filterParam});
 
 db.delete('name', {filterParam});
 
-I will provide a link to the documentation once I have it. 
+Documentation -> https://doc.deno.land/https/deno.land/x/deno_db@release/index.js#Database
