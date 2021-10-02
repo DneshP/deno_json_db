@@ -21,3 +21,6 @@ db.find('name', {filterParam});
 db.delete('name', {filterParam});
 
 Documentation -> https://doc.deno.land/https/deno.land/x/deno_json_db@yo/index.js
+
+Contribute
+for sure! create an issue ;)
