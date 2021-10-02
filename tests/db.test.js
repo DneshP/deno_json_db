@@ -1,5 +1,9 @@
 import { Database, assertEquals, assertObjectMatch } from "../deps.js";
 
+/**
+ * Tests
+ */
+
 function assertResponse(response, responseStatus, message) {
     assertEquals(response.status,responseStatus);
     assertEquals(response.message, message);
