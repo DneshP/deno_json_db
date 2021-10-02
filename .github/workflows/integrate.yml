@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Deno
-        run: pwd | curl -fsSL https://deno.land/x/install/install.sh | ls -l $HOME/.deno | export DENO_INSTALL="$HOME/.deno" | export PATH="$DENO_INSTALL/bin:$PATH"
+        run: pwd | curl -fsSL https://deno.land/x/install/install.sh | export DENO_INSTALL="/home" | export PATH="$DENO_INSTALL/bin:$PATH"
 
       - name: Verify formatting
         run: deno fmt --check
