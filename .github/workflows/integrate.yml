@@ -17,6 +17,9 @@ jobs:
       - name: Setup Deno
         run: curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh
 
+      - name: Verify formatting
+        run: deno fmt --check
+
       - name: Run linter
         run: deno lint
 
